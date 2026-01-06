@@ -2,33 +2,33 @@
 
 # Kit 工作流前置检查脚本
 # 用于检查工作流执行的前置条件
-# 包括：target 目录文档检测、history 目录检测、history 更新策略
+# 包括：spec 目录文档检测、history 目录检测、history 更新策略
 
 set -e
 
 JSON_MODE=false
-TARGET_DIR=""
+SPEC_DIR=""
 FEATURE_KEYWORD=""
 
 while [ $# -gt 0 ]; do
     case "$1" in
         --json) JSON_MODE=true ;;
-        --target)
+        --spec)
             shift
-            TARGET_DIR="$1"
+            SPEC_DIR="$1"
             ;;
         --feature)
             shift
             FEATURE_KEYWORD="$1"
             ;;
         --help|-h)
-            echo "Usage: $0 [--json] [--target <dir>] [--feature <keyword>]"
+            echo "Usage: $0 [--json] [--spec <dir>] [--feature <keyword>]"
             echo ""
             echo "检查 Kit 工作流的前置条件"
             echo ""
             echo "Options:"
             echo "  --json              输出 JSON 格式"
-            echo "  --target <dir>      指定 target 目录路径"
+            echo "  --spec <dir>        指定 spec 目录路径"
             echo "  --feature <keyword> 功能关键词（用于匹配 history 文档）"
             echo "  --help              显示帮助信息"
             exit 0
@@ -49,36 +49,36 @@ else
     PROJECT_ROOT="$(dirname "$(dirname "$(dirname "$KIT_DIR")")")"
 fi
 
-# 默认 target 目录为 specs/
-if [ -z "$TARGET_DIR" ]; then
-    TARGET_DIR="$PROJECT_ROOT/specs"
+# 默认 spec 目录为 specs/
+if [ -z "$SPEC_DIR" ]; then
+    SPEC_DIR="$PROJECT_ROOT/specs"
 fi
 
 # ============================================
-# 检查 target 目录（需求文档）
+# 检查 spec 目录（需求文档）
 # ============================================
-TARGET_EXISTS=false
-TARGET_FILES=()
-TARGET_HAS_SPEC=false
+SPEC_DIR_EXISTS=false
+SPEC_FILES=()
+SPEC_HAS_SPEC_MD=false
 
-if [ -d "$TARGET_DIR" ]; then
-    TARGET_EXISTS=true
-    # 获取 target 目录下的 .md 文件
+if [ -d "$SPEC_DIR" ]; then
+    SPEC_DIR_EXISTS=true
+    # 获取 spec 目录下的 .md 文件
     while IFS= read -r -d '' file; do
         filename="$(basename "$file")"
-        TARGET_FILES+=("$filename")
+        SPEC_FILES+=("$filename")
         # 检查是否有 spec.md 文件
         if [ "$filename" = "spec.md" ]; then
-            TARGET_HAS_SPEC=true
+            SPEC_HAS_SPEC_MD=true
         fi
-    done < <(find "$TARGET_DIR" -maxdepth 2 -name "*.md" -print0 2>/dev/null)
+    done < <(find "$SPEC_DIR" -maxdepth 2 -name "*.md" -print0 2>/dev/null)
 fi
 
-TARGET_COUNT=${#TARGET_FILES[@]}
+SPEC_COUNT=${#SPEC_FILES[@]}
 
 # 确定需求来源
-if [ "$TARGET_HAS_SPEC" = true ] || [ $TARGET_COUNT -gt 0 ]; then
-    SPEC_SOURCE="target"
+if [ "$SPEC_HAS_SPEC_MD" = true ] || [ $SPEC_COUNT -gt 0 ]; then
+    SPEC_SOURCE="spec"
 else
     SPEC_SOURCE="prompt"
 fi
@@ -131,14 +131,14 @@ if $JSON_MODE; then
     printf '"PROJECT_ROOT":"%s",' "$PROJECT_ROOT"
     printf '"KIT_DIR":"%s",' "$KIT_DIR"
     
-    # Target 信息
-    printf '"TARGET_DIR":"%s",' "$TARGET_DIR"
-    printf '"TARGET_EXISTS":%s,' "$TARGET_EXISTS"
-    printf '"TARGET_COUNT":%d,' "$TARGET_COUNT"
-    printf '"TARGET_HAS_SPEC":%s,' "$TARGET_HAS_SPEC"
-    printf '"TARGET_FILES":['
+    # Spec 目录信息
+    printf '"SPEC_DIR":"%s",' "$SPEC_DIR"
+    printf '"SPEC_DIR_EXISTS":%s,' "$SPEC_DIR_EXISTS"
+    printf '"SPEC_COUNT":%d,' "$SPEC_COUNT"
+    printf '"SPEC_HAS_SPEC_MD":%s,' "$SPEC_HAS_SPEC_MD"
+    printf '"SPEC_FILES":['
     first=true
-    for file in "${TARGET_FILES[@]}"; do
+    for file in "${SPEC_FILES[@]}"; do
         if $first; then first=false; else printf ','; fi
         printf '"%s"' "$file"
     done
@@ -170,22 +170,22 @@ else
     echo "KIT_DIR: $KIT_DIR"
     echo ""
     
-    echo "--- Target 目录 ---"
-    echo "TARGET_DIR: $TARGET_DIR"
-    echo "TARGET_EXISTS: $TARGET_EXISTS"
-    echo "TARGET_COUNT: $TARGET_COUNT"
-    echo "TARGET_HAS_SPEC: $TARGET_HAS_SPEC"
-    if [ $TARGET_COUNT -gt 0 ]; then
-        echo "TARGET_FILES:"
-        for file in "${TARGET_FILES[@]}"; do
+    echo "--- Spec 目录 ---"
+    echo "SPEC_DIR: $SPEC_DIR"
+    echo "SPEC_DIR_EXISTS: $SPEC_DIR_EXISTS"
+    echo "SPEC_COUNT: $SPEC_COUNT"
+    echo "SPEC_HAS_SPEC_MD: $SPEC_HAS_SPEC_MD"
+    if [ $SPEC_COUNT -gt 0 ]; then
+        echo "SPEC_FILES:"
+        for file in "${SPEC_FILES[@]}"; do
             echo "  - $file"
         done
     fi
     echo ""
     
     echo "--- 需求来源 ---"
-    if [ "$SPEC_SOURCE" = "target" ]; then
-        echo "SPEC_SOURCE: 📄 target 目录文档"
+    if [ "$SPEC_SOURCE" = "spec" ]; then
+        echo "SPEC_SOURCE: 📄 spec 目录文档"
     else
         echo "SPEC_SOURCE: 📝 prompt 输入"
     fi

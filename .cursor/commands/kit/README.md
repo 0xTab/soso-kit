@@ -19,6 +19,7 @@
 │   └── check.md         # 检查验收
 ├── history/             # 历史文档归档
 ├── rules/               # 项目规则
+│   ├── regular.mdc      # 通用规范（始终应用）
 │   ├── clean-code.mdc
 │   └── react.mdc
 └── scripts/
