@@ -49,9 +49,9 @@ else
     PROJECT_ROOT="$(dirname "$(dirname "$(dirname "$KIT_DIR")")")"
 fi
 
-# 默认 spec 目录为 specs/
+# 默认 spec 目录为 k/spec/
 if [ -z "$SPEC_DIR" ]; then
-    SPEC_DIR="$PROJECT_ROOT/specs"
+    SPEC_DIR="$KIT_DIR/spec"
 fi
 
 # ============================================

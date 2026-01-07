@@ -2,7 +2,7 @@
 description: 执行任务清单，按步骤实现需求
 handoffs: 
   - label: ✅ 进入检查阶段
-    agent: kit.check
+    agent: k.check
     prompt: 执行代码检查和验收
 ---
 
@@ -24,8 +24,31 @@ $ARGUMENTS
 
 ## 执行规范
 
-**必须遵循** `.cursor/commands/kit/task/rules.md` 中的规范：
-- 如果是前端代码，遵循 `.cursor/rules/` 目录下的规范文件
+确保代码修改符合项目规范，保持代码质量一致性。
+
+### 通用规范（始终应用）
+
+| 规范文件 | 适用场景 | 路径 |
+|----------|----------|------|
+| `regular.mdc` | 通用代码规范（注释等） | `.cursor/commands/k/rules/regular.mdc` |
+
+### 前端代码
+
+| 规范文件 | 适用场景 | 路径 |
+|----------|----------|------|
+| `react.mdc` | React 组件开发 | `.cursor/rules/react.mdc` |
+| `clean-code.mdc` | 通用代码规范 | `.cursor/rules/clean-code.mdc` |
+
+### 规范检查清单
+
+执行任务时，确保：
+
+- [ ] 代码符合 `regular.mdc` 通用规范（注释使用中文，简洁格式）
+- [ ] 代码符合 `clean-code.mdc` 规范
+- [ ] React 代码符合 `react.mdc` 规范
+- [ ] 命名规范一致
+- [ ] 无冗余代码
+- [ ] 错误处理完善
 
 ---
 
@@ -92,5 +115,5 @@ $ARGUMENTS
 ```
 
 等待用户回复：
-- 用户回复 `Y` 或 `是` → 自动执行 `.cursor/commands/kit/check/check.md`
+- 用户回复 `Y` 或 `是` → 自动执行 `.cursor/commands/k/check.md`
 - 用户有其他意见 → 根据反馈继续修改代码

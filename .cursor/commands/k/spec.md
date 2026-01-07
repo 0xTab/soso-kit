@@ -2,7 +2,7 @@
 description: 理解需求背景并生成功能规范
 handoffs: 
   - label: 🚀 进入计划阶段
-    agent: kit.plan
+    agent: k.plan
     prompt: 基于规范创建实现计划
     send: true
 scripts:
@@ -23,7 +23,7 @@ $ARGUMENTS
 
 a. 理解需求背景（**优先级：spec 目录文档 > prompt 文字**）
 b. 理解项目背景上下文
-c. 如果 `.cursor/commands/kit/history/` 目录有文档，则阅读文档，理解之前的需求背景和实现
+c. 如果 `.cursor/commands/k/history/` 目录有文档，则阅读文档，理解之前的需求背景和实现
 d. 理解项目实现的预期
 e. 单一目的，确保没有多余的改动
 
@@ -113,4 +113,4 @@ e. 单一目的，确保没有多余的改动
 
 **需求理解完成后，自动进入计划阶段。**
 
-立即执行 `.cursor/commands/kit/plan/plan.md` 制定实现计划。
+立即执行 `.cursor/commands/k/plan.md` 制定实现计划。
