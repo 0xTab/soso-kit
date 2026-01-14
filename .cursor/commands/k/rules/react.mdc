@@ -17,9 +17,16 @@ globs: **/*.tsx, **/*.jsx, components/**/*
 - Follow the Rules of Hooks
 - Use custom hooks for reusable logic
 - Keep hooks focused and simple
-- Use appropriate dependency arrays in useEffect
 - Implement cleanup in useEffect when needed
 - Avoid nested hooks
+
+### useEffect Dependencies (Critical)
+- Prefer primitive values (string/number/boolean) as dependencies
+- Wrap objects/arrays with `useMemo` to stabilize reference
+- Wrap functions with `useCallback` to stabilize reference
+- Use `useRef` for values that shouldn't trigger re-run
+- Avoid inline objects/arrays/functions in dependency array
+- Goal: prevent unnecessary re-runs from unstable references; real value changes still trigger as expected
 
 ## State Management
 - Use useState for local component state
