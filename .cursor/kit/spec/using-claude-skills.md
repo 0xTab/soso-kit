@@ -58,3 +58,12 @@ d.核心逻辑
 - 获取coach目录下面所有的文档
 - 根据practice的指导/模版和规范生产对应的skill目录
 - 具体细节参考.cursor/kit/history/20260116-understanding-claude-skills.md
+
+步骤7，执行skill
+a.在.cursor/commands/k新增mastery.md
+b.有两种模式
+c.模式1 通过command唤起，结合prompt执行对应的skills
+b.模式2，结合步骤3里的方案， 智能代理模式 在执行task阶段执行
+e.为了自动化 有必要可以新增一个scripts
+f.更新task阶段，task阶段默认不执行skills
+
