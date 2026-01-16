@@ -258,7 +258,7 @@ EOF
 ### 前置步骤（必须执行）
 
 ```
-1. 读取模板文件：read_file(".cursor/kit/docs/history-flow-template.md")
+1. 读取模板文件：read_file(".cursor/kit/templates/history-flow-template.md")
 2. 根据需求类型选择模板 A/B/C
 3. 按照模板格式编写流程图（ASCII 字符，禁止 Mermaid）
 ```

@@ -7,7 +7,7 @@
 ## 目录结构
 
 ```
-.cursor/kit/template/
+.cursor/kit/templates/
 ├── spec-template.md      # 需求规范 → 对应 /k/spec
 ├── plan-template.md      # 实现计划 → 对应 /k/plan
 ├── task-template.md      # 任务清单 → 对应 /k/task
@@ -54,6 +54,7 @@ cp .cursor/template/check-template.md specs/001-功能名/check.md
 | research | 技术选型研究 | ~50 |
 | rules | 项目规则约束 | ~65 |
 | flow | 需求流程图(Mermaid) | ~50 |
+| practice | 生成skills文档 ｜ ~100 |
 
 ---
 

@@ -47,3 +47,14 @@ b.rules迁移到.cursor目录下
 c.其余的的文件都迁移到kit目录下
 d.更新script里的.cursor/commands/k/scripts/check-prerequisites.sh文件
 e.更新完之后应该保持了commands/k目录的整洁，而不影响整个已有的流程
+
+步骤6，新增skill
+a.在.cursor/commands/k新增practice.md
+    第一点.这个文档的作用是详细的指导如何写出规范专业的skill文档,
+    第二点, 执行这个命名的时候会读取.cursor/kit/coach里面的所有文档，将依次阅读里面的文档，将里面的文档生成skill文档，生成到.cursor/skills
+c..cursor/kit/scripts新增一个script支持这个新增practice的自动化
+d.核心逻辑
+- 用户执行pratice.md
+- 获取coach目录下面所有的文档
+- 根据practice的指导/模版和规范生产对应的skill目录
+- 具体细节参考.cursor/kit/history/20260116-understanding-claude-skills.md
