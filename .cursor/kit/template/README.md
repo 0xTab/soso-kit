@@ -7,7 +7,7 @@
 ## 目录结构
 
 ```
-.cursor/template/
+.cursor/kit/template/
 ├── spec-template.md      # 需求规范 → 对应 /k/spec
 ├── plan-template.md      # 实现计划 → 对应 /k/plan
 ├── task-template.md      # 任务清单 → 对应 /k/task

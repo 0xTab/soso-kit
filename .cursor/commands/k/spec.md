@@ -6,7 +6,7 @@ handoffs:
     prompt: 基于规范创建实现计划
     send: true
 scripts:
-  sh: scripts/check-prerequisites.sh --json
+  sh: ../../kit/scripts/check-prerequisites.sh --json
 ---
 
 # 功能规范: [功能名称]

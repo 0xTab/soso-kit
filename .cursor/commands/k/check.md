@@ -120,10 +120,10 @@ b. 有未通过项 → 给出理由，**返回修复**
 
 ```bash
 # 1. 确保目录存在
-mkdir -p .cursor/commands/k/history/
+mkdir -p .cursor/kit/history/
 
 # 2. 写入文件内容
-cat << 'EOF' > .cursor/commands/k/history/YYYYMMDD-feature-name.md
+cat << 'EOF' > .cursor/kit/history/YYYYMMDD-feature-name.md
 # 文档内容
 ...
 EOF
@@ -211,7 +211,7 @@ EOF
 
 ### 检查 history 目录
 
-检查 `.cursor/commands/k/history/` 目录是否有相关文档。
+检查 `.cursor/kit/history/` 目录是否有相关文档。
 
 ### 情况 A：已有相关文档 → 替换旧 history
 
@@ -227,7 +227,7 @@ EOF
 **处理步骤**：
 1. **读取 spec**：完整读取 spec 目录下的文档内容
 2. **读取旧 history**：提取有价值的流程图和组件列表
-3. **删除旧 history**：`rm -f .cursor/commands/k/history/旧文件名.md`
+3. **删除旧 history**：`rm -f .cursor/kit/history/旧文件名.md`
 4. **创建合并文档**：使用 Shell 命令写入（`all` 权限）
 5. **保持 spec 不变**：spec 目录下的文档不做任何修改
 
@@ -258,7 +258,7 @@ EOF
 ### 前置步骤（必须执行）
 
 ```
-1. 读取模板文件：read_file(".cursor/commands/k/docs/history-flow-template.md")
+1. 读取模板文件：read_file(".cursor/kit/docs/history-flow-template.md")
 2. 根据需求类型选择模板 A/B/C
 3. 按照模板格式编写流程图（ASCII 字符，禁止 Mermaid）
 ```

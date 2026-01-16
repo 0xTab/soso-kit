@@ -54,9 +54,7 @@ if [ -z "$SPEC_DIR" ]; then
     SPEC_DIR="$KIT_DIR/spec"
 fi
 
-# ============================================
 # 检查 spec 目录（需求文档）
-# ============================================
 SPEC_DIR_EXISTS=false
 SPEC_FILES=()
 SPEC_HAS_SPEC_MD=false
@@ -83,9 +81,7 @@ else
     SPEC_SOURCE="prompt"
 fi
 
-# ============================================
 # 检查 history 目录
-# ============================================
 HISTORY_EXISTS=false
 HISTORY_FILES=()
 HISTORY_MATCHED_FILE=""

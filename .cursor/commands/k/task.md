@@ -30,7 +30,7 @@ $ARGUMENTS
 
 | 规范文件 | 适用场景 | 路径 |
 |----------|----------|------|
-| `regular.mdc` | 通用代码规范（注释等） | `.cursor/commands/k/rules/regular.mdc` |
+| `regular.mdc` | 通用代码规范（注释等） | `.cursor/rules/regular.mdc` |
 
 ### 前端代码
 
