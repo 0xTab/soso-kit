@@ -146,13 +146,65 @@ bash .cursor/kit/scripts/generate-skill.sh
     └── SKILL.md
 ```
 
-### 步骤 4: 优化 Skill (可选)
+### 步骤 4: 优化 Skill (推荐)
 
 生成后,你可以手动优化:
+
+#### 4.1 优化 SKILL.md
 1. 完善 description (添加更多触发短语)
 2. 补充 "When to Apply" 场景
 3. 添加 scripts/ 目录实现自动化
-4. 在 references/ 添加更多参考资料
+4. 优化 "How It Works" 流程说明
+
+#### 4.2 精简 references/original.md (重要!)
+
+**为什么要精简?**
+- 自动生成的 original.md 可能包含冗余内容
+- 保持文档简洁,提高可读性
+- 符合 Skills 标准的渐进式披露原则
+
+**精简原则**:
+- ✅ **保留**: 核心命令、实际案例、重要说明、使用场景
+- ❌ **移除**: 对话记录、时间戳、冗余问答、元数据
+
+**精简示例**:
+
+```markdown
+# 精简前 (79行)
+# Git worktree 分支目录操作
+_Exported on 1/15/2026 at 11:25:05 GMT+8 from Cursor (2.3.29)_
+
+---
+**User**
+创建分支目录
+git worktree list...
+
+---
+**Cursor**
+我来帮你使用 git worktree...
+[大量对话内容]
+---
+
+# 精简后 (59行)
+# Git Worktree 分支目录操作 - 参考文档
+
+## 核心命令
+### 查看当前 Worktree
+```bash
+git worktree list
+```
+
+### 创建新的分支目录
+[仅保留核心命令和案例]
+```
+
+**精简步骤**:
+1. 删除导出时间戳和元数据
+2. 移除所有对话标记 (User/Cursor)
+3. 保留核心命令和代码块
+4. 保留实际使用案例
+5. 保留重要说明和注意事项
+6. 整理格式,使其更清晰
 
 ---
 
@@ -238,12 +290,21 @@ description: React stuff
 
 生成后,检查以下项目:
 
+### SKILL.md 检查
 - [ ] SKILL.md 文件存在且格式正确
 - [ ] name 字段使用 kebab-case
 - [ ] description 包含触发短语
 - [ ] 标题清晰明确
-- [ ] references/ 目录包含原始文档
 - [ ] 目录结构符合标准
+
+### references/original.md 检查
+- [ ] 已删除导出时间戳和元数据
+- [ ] 已移除所有对话标记 (User/Cursor)
+- [ ] 保留了核心命令和代码块
+- [ ] 保留了实际使用案例
+- [ ] 保留了重要说明和注意事项
+- [ ] 格式清晰,易于阅读
+- [ ] 文件大小合理 (建议 < 100 行)
 
 ---
 
